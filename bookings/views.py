@@ -29,3 +29,5 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'bookings/login.html', {'form': form})
+def home_view(request):
+    return render(request,'bookings/home.html')
