@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="start project">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,18 +29,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "w790"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;w790&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/w790/website.git",
-    "accountId": "69b12433-024f-4d0d-9594-8e960b042520"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/w790/website.git&quot;,
+    &quot;accountId&quot;: &quot;69b12433-024f-4d0d-9594-8e960b042520&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -53,8 +56,10 @@
     "Django Server.DjangoProject2.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Паха/PycharmProjects/DjangoProject2",
+    "last_opened_file_path": "C:/sqlite/sqlite-jdbc-3.49.1.0.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,6 +67,11 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -108,7 +118,18 @@
       <option name="presentableId" value="Default" />
       <updated>1742667626118</updated>
       <workItem from="1742667627158" duration="1769000" />
-      <workItem from="1742719452643" duration="6108000" />
+      <workItem from="1742719452643" duration="8649000" />
+      <workItem from="1742991340774" duration="805000" />
+      <workItem from="1743274914043" duration="1050000" />
+      <workItem from="1743276004461" duration="140000" />
+      <workItem from="1743276215561" duration="122000" />
+      <workItem from="1743276663393" duration="1050000" />
+      <workItem from="1743318397394" duration="63000" />
+      <workItem from="1743318469016" duration="35000" />
+      <workItem from="1743318810008" duration="27000" />
+      <workItem from="1743319131873" duration="67000" />
+      <workItem from="1743323009473" duration="51000" />
+      <workItem from="1743323301493" duration="16801000" />
     </task>
     <task id="LOCAL-00001" summary="start project">
       <option name="closed" value="true" />
@@ -118,7 +139,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742725009549</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="start project">
+      <option name="closed" value="true" />
+      <created>1742728271275</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742728271275</updated>
+    </task>
+    <task id="LOCAL-00003" summary="start project">
+      <option name="closed" value="true" />
+      <created>1742728445593</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742728445593</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
