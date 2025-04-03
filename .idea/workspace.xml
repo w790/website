@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="added home_view" />
+    <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="added home_view">
+      <change afterPath="$PROJECT_DIR$/bookings/templates/bookings/add_room.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookings/templates/bookings/booking_success.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookings/templates/bookings/create_booking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/38511923-8393-4f9a-acc3-67229193de08.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/38511923-8393-4f9a-acc3-67229193de08/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -124,7 +137,24 @@
       <workItem from="1743318810008" duration="27000" />
       <workItem from="1743319131873" duration="67000" />
       <workItem from="1743323009473" duration="51000" />
-      <workItem from="1743323301493" duration="17114000" />
+      <workItem from="1743323301493" duration="20596000" />
+      <workItem from="1743421149758" duration="143000" />
+      <workItem from="1743421592818" duration="3488000" />
+      <workItem from="1743515235736" duration="4930000" />
+      <workItem from="1743597408293" duration="278000" />
+      <workItem from="1743597820918" duration="235000" />
+      <workItem from="1743598086291" duration="25000" />
+      <workItem from="1743598535517" duration="1361000" />
+      <workItem from="1743687591551" duration="55000" />
+      <workItem from="1743687744799" duration="50000" />
+      <workItem from="1743687804131" duration="4000" />
+      <workItem from="1743687825159" duration="43000" />
+      <workItem from="1743687987886" duration="28000" />
+      <workItem from="1743688024221" duration="45000" />
+      <workItem from="1743688095286" duration="124000" />
+      <workItem from="1743688361682" duration="168000" />
+      <workItem from="1743688663706" duration="136000" />
+      <workItem from="1743689070378" duration="14592000" />
     </task>
     <task id="LOCAL-00001" summary="start project">
       <option name="closed" value="true" />
@@ -158,7 +188,31 @@
       <option name="project" value="LOCAL" />
       <updated>1743341564817</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added home_view">
+      <option name="closed" value="true" />
+      <created>1743341882143</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1743341882143</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added home_view">
+      <option name="closed" value="true" />
+      <created>1743342296797</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743342296798</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added home_view">
+      <option name="closed" value="true" />
+      <created>1743342355906</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743342355906</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

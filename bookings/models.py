@@ -13,11 +13,24 @@ class Room(models.Model):
 
 # Модель для бронирования
 class Booking(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Связь с пользователем
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)  # Связь с номером
-    check_in = models.DateField()  # Дата заезда
-    check_out = models.DateField()  # Дата выезда
-    created_at = models.DateTimeField(auto_now_add=True)  # Время создания бронирования
+    STATUS_CHOICES = [
+        ("Ожидание", "Ожидание"),
+        ("Подтверждено", "Подтверждено"),
+        ("Отменено", "Отменено"),
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="Пользователь")  # Связь с пользователем
+    room = models.ForeignKey(Room, on_delete=models.CASCADE,verbose_name="Комната")  # Связь с номером
+    check_in = models.DateField(verbose_name="Дата заселения")  # Дата заезда
+    check_out = models.DateField(verbose_name="Дата выселения")  # Дата выезда
+    created_at = models.DateTimeField(auto_now_add=True,verbose_name="Дата бронирования со временем")  # Время создания бронирования
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Ожидание")
 
     def __str__(self):
-        return f"Booking by {self.user.username} for Room {self.room.number}"
+        return f"{self.user.username} забронировал комнату {self.room} с {self.check_in} по {self.check_out}"
+    def is_available(self):
+        """Проверяет, доступен ли номер для выбранных дат."""
+        existing_bookings = Booking.objects.filter(room=self.room)
+        for booking in existing_bookings:
+            if (self.check_in < booking.check_out and self.check_out > booking.check_in):
+                return False
+        return True
