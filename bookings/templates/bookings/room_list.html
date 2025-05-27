@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "bookings/base.html" %}
+{% block title %}Отели | SherSnow{% endblock %}
 
-</body>
-</html>
+{% block content %}
+<div class="container">
+    <h2>Список номеров</h2>
+    <a href="{% url 'add_room' %}" class="btn btn-success mb-3">Добавить номер</a>
+    <div class="row">
+        {% for room in rooms %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ room.name }}</h5>
+                    <p class="card-text">{{ room.description }}</p>
+                    <p class="text-success">Цена: {{ room.price }}₽/ночь</p>
+                    <a href="{% url 'room_edit' room.pk %}" class="btn btn-warning">Редактировать</a>
+                    <a href="{% url 'room_delete' room.pk %}" class="btn btn-danger">Удалить</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
