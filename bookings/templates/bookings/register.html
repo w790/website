@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Регистрация | SherSnow{% endblock %}
 
-</body>
-</html>
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Логин</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+            <div class="text-danger">{{ form.username.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        {{ form.email }}
+    </div>
+    <div class="form-group">
+        <label>Пароль</label>
+        {{ form.password1 }}
+        {% if form.password1.errors %}
+            <div class="text-danger">{{ form.password1.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label>Подтверждение пароля</label>
+        {{ form.password2 }}
+    </div>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+</form>
+{% endblock %}
