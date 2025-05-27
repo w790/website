@@ -6,6 +6,7 @@ from .models import Room,Booking
 # Форма для регистрации пользователя
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
