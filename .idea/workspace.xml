@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DjangoProject2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoProject2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DjangoProject2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoProject2/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="fixed bugs:&#10;-base.html&#10;(В навигационной панели:&#10;1.Заменил две отдельные кнопки &quot;Войти&quot; и &quot;Регистрация&quot; на одну комбинированную&#10;2.Добавил выпадающее меню с Bootstrap Dropdown&#10;3.Текст кнопки: &quot;Мой аккаунт&quot; с иконкой стрелки&#10;4.В выпадающем меню разделил &quot;Войти&quot; и &quot;Зарегистрироваться&quot; горизонтальной линией&#10;В футере:&#10;1.Заменил кнопку &quot;Вход&quot; на две текстовые ссылки)&#10;&#10;-home.html&#10;1.Использован линейный градиент для затемнения фона и улучшения читаемости текста&#10;2.Изображение растянуто на всю ширину секции&#10;Оптимизирована кнопка &quot;Посмотреть номера&quot;&#10;Улучшена стилизация преимуществ и отзывов" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="CoyD1 &lt;apranovich22010kostya@mail.ru&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -171,7 +168,9 @@
       <workItem from="1745166689024" duration="18000" />
       <workItem from="1748709366954" duration="2843000" />
       <workItem from="1748748582607" duration="11628000" />
-      <workItem from="1748773743284" duration="9341000" />
+      <workItem from="1748773743284" duration="10830000" />
+      <workItem from="1748784610926" duration="36000" />
+      <workItem from="1748784657818" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="start project">
       <option name="closed" value="true" />
@@ -237,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743704858516</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fixed bugs:&#10;-base.html&#10;(В навигационной панели:&#10;1.Заменил две отдельные кнопки &quot;Войти&quot; и &quot;Регистрация&quot; на одну комбинированную&#10;2.Добавил выпадающее меню с Bootstrap Dropdown&#10;3.Текст кнопки: &quot;Мой аккаунт&quot; с иконкой стрелки&#10;4.В выпадающем меню разделил &quot;Войти&quot; и &quot;Зарегистрироваться&quot; горизонтальной линией&#10;В футере:&#10;1.Заменил кнопку &quot;Вход&quot; на две текстовые ссылки)&#10;&#10;-home.html&#10;1.Использован линейный градиент для затемнения фона и улучшения читаемости текста&#10;2.Изображение растянуто на всю ширину секции&#10;Оптимизирована кнопка &quot;Посмотреть номера&quot;&#10;Улучшена стилизация преимуществ и отзывов">
+      <option name="closed" value="true" />
+      <created>1748783236721</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1748783236721</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,6 +280,9 @@
     <MESSAGE value="start project" />
     <MESSAGE value="creating forms for booking and adding rooms.&#10;added a function (is_available) to models.py&#10;added views (add_room,create_booking,room_list,booking_success)" />
     <MESSAGE value="added home_view" />
-    <option name="LAST_COMMIT_MESSAGE" value="added home_view" />
+    <MESSAGE value="fixed bugs:&#10;-base.html&#10;(В навигационной панели:&#10;1.Заменил две отдельные кнопки &quot;Войти&quot; и &quot;Регистрация&quot; на одну комбинированную&#10;2.Добавил выпадающее меню с Bootstrap Dropdown&#10;3.Текст кнопки: &quot;Мой аккаунт&quot; с иконкой стрелки&#10;4.В выпадающем меню разделил &quot;Войти&quot; и &quot;Зарегистрироваться&quot; горизонтальной линией&#10;В футере:&#10;1.Заменил кнопку &quot;Вход&quot; на две текстовые ссылки)&#10;&#10;-home.html&#10;1.Использован линейный градиент для затемнения фона и улучшения читаемости текста&#10;2,Изображение растянуто на всю ширину секции&#10;Оптимизирована кнопка &quot;Посмотреть номера&quot;&#10;Улучшена стилизация преимуществ и отзывов" />
+    <MESSAGE value="Создан базовый шаблон base.html&#10;Реальзована регистрация и вход пользователей&#10;Реализовано бронирование отелей и личный кабинет для их просмотра." />
+    <MESSAGE value="fixed bugs:&#10;-base.html&#10;(В навигационной панели:&#10;1.Заменил две отдельные кнопки &quot;Войти&quot; и &quot;Регистрация&quot; на одну комбинированную&#10;2.Добавил выпадающее меню с Bootstrap Dropdown&#10;3.Текст кнопки: &quot;Мой аккаунт&quot; с иконкой стрелки&#10;4.В выпадающем меню разделил &quot;Войти&quot; и &quot;Зарегистрироваться&quot; горизонтальной линией&#10;В футере:&#10;1.Заменил кнопку &quot;Вход&quot; на две текстовые ссылки)&#10;&#10;-home.html&#10;1.Использован линейный градиент для затемнения фона и улучшения читаемости текста&#10;2.Изображение растянуто на всю ширину секции&#10;Оптимизирована кнопка &quot;Посмотреть номера&quot;&#10;Улучшена стилизация преимуществ и отзывов" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bugs:&#10;-base.html&#10;(В навигационной панели:&#10;1.Заменил две отдельные кнопки &quot;Войти&quot; и &quot;Регистрация&quot; на одну комбинированную&#10;2.Добавил выпадающее меню с Bootstrap Dropdown&#10;3.Текст кнопки: &quot;Мой аккаунт&quot; с иконкой стрелки&#10;4.В выпадающем меню разделил &quot;Войти&quot; и &quot;Зарегистрироваться&quot; горизонтальной линией&#10;В футере:&#10;1.Заменил кнопку &quot;Вход&quot; на две текстовые ссылки)&#10;&#10;-home.html&#10;1.Использован линейный градиент для затемнения фона и улучшения читаемости текста&#10;2.Изображение растянуто на всю ширину секции&#10;Оптимизирована кнопка &quot;Посмотреть номера&quot;&#10;Улучшена стилизация преимуществ и отзывов" />
   </component>
 </project>
