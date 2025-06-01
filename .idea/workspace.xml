@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="fixed bugs:&#10;-base.html&#10;(В навигационной панели:&#10;1.Заменил две отдельные кнопки &quot;Войти&quot; и &quot;Регистрация&quot; на одну комбинированную&#10;2.Добавил выпадающее меню с Bootstrap Dropdown&#10;3.Текст кнопки: &quot;Мой аккаунт&quot; с иконкой стрелки&#10;4.В выпадающем меню разделил &quot;Войти&quot; и &quot;Зарегистрироваться&quot; горизонтальной линией&#10;В футере:&#10;1.Заменил кнопку &quot;Вход&quot; на две текстовые ссылки)&#10;&#10;-home.html&#10;1.Использован линейный градиент для затемнения фона и улучшения читаемости текста&#10;2.Изображение растянуто на всю ширину секции&#10;Оптимизирована кнопка &quot;Посмотреть номера&quot;&#10;Улучшена стилизация преимуществ и отзывов" />
+    <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="fixed bugs:&#10;-base.html&#10;(В навигационной панели:&#10;1.Заменил две отдельные кнопки &quot;Войти&quot; и &quot;Регистрация&quot; на одну комбинированную&#10;2.Добавил выпадающее меню с Bootstrap Dropdown&#10;3.Текст кнопки: &quot;Мой аккаунт&quot; с иконкой стрелки&#10;4.В выпадающем меню разделил &quot;Войти&quot; и &quot;Зарегистрироваться&quot; горизонтальной линией&#10;В футере:&#10;1.Заменил кнопку &quot;Вход&quot; на две текстовые ссылки)&#10;&#10;-home.html&#10;1.Использован линейный градиент для затемнения фона и улучшения читаемости текста&#10;2.Изображение растянуто на всю ширину секции&#10;Оптимизирована кнопка &quot;Посмотреть номера&quot;&#10;Улучшена стилизация преимуществ и отзывов">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +172,7 @@
       <workItem from="1748748582607" duration="11628000" />
       <workItem from="1748773743284" duration="10830000" />
       <workItem from="1748784610926" duration="36000" />
-      <workItem from="1748784657818" duration="300000" />
+      <workItem from="1748784657818" duration="913000" />
     </task>
     <task id="LOCAL-00001" summary="start project">
       <option name="closed" value="true" />
