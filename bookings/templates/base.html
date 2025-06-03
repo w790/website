@@ -35,22 +35,31 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
-            <!-- Показывать только авторизованным -->
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'room_list' %}">Номера</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'create_booking' %}">Забронировать</a>
-              </li>
-            {% endif %}
-          </ul>
 
-          <ul class="navbar-nav">
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'user_dashboard' %}">Кабинет</a>
-              </li>
+                <!-- Разделение по ролям -->
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <!-- Меню администратора -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'room_list' %}">Управление номерами</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'booking_list' %}">Управление бронированиями</a>
+                        </li>
+                    {% else %}
+                        <!-- Меню обычного пользователя -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create_booking' %}">Забронировать номер</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_dashboard' %}">Личный кабинет</a>
+                    </li>
               <!-- Выход через POST-запрос -->
               <li class="nav-item">
                 <form method="post" action="{% url 'logout' %}" class="d-inline">
@@ -85,36 +94,40 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <h5>SherSnow Hotel</h5>
-            <p>Лучший отель для вашего отдыха</p>
-          </div>
-          <div class="col-md-4">
-            <h5>Контакты</h5>
-            <p>г. Шерегеш, ул. Горнолыжная, 123</p>
-            <p>+7 (999) 649-50-16</p>
-          </div>
-          <div class="col-md-4">
-            <h5>Быстрые ссылки</h5>
-            <ul class="list-unstyled">
-              <li><a href="{% url 'home' %}" class="text-white">Главная</a></li>
-              {% if user.is_authenticated %}
-                <li><a href="{% url 'room_list' %}" class="text-white">Номера</a></li>
-              {% else %}
-                <!-- Текстовые ссылки вместо кнопок -->
-                <li><a href="{% url 'login' %}" class="text-white">Вход</a></li>
-                <li><a href="{% url 'register' %}" class="text-white">Регистрация</a></li>
-              {% endif %}
-            </ul>
-          </div>
+        <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>SherSnow Hotel</h5>
+                    <p>Лучший отель для вашего отдыха</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Контакты</h5>
+                    <p>г. Шерегеш, ул. Горнолыжная, 123</p>
+                    <p>+7 (999) 649-50-16</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Быстрые ссылки</h5>
+                    <ul class="list-unstyled">
+                        {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                <li><a href="{% url 'room_list' %}" class="text-white">Управление номерами</a></li>
+                                <li><a href="{% url 'booking_list' %}" class="text-white">Управление бронированиями</a></li>
+                            {% else %}
+                                <li><a href="{% url 'create_booking' %}" class="text-white">Бронирование</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'user_dashboard' %}" class="text-white">Личный кабинет</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}" class="text-white">Вход</a></li>
+                            <li><a href="{% url 'register' %}" class="text-white">Регистрация</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>&copy; {% now "Y" %} SherSnow Hotel. Все права защищены.</p>
+            </div>
         </div>
-        <div class="text-center mt-3">
-          <p>&copy; {% now "Y" %} SherSnow Hotel. Все права защищены.</p>
-        </div>
-      </div>
     </footer>
 
     <!-- Bootstrap JS -->
