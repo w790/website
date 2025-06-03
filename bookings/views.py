@@ -53,7 +53,7 @@ def room_list(request):
 @user_passes_test(admin_check)
 def add_room(request):
     if request.method == 'POST':
-        form = RoomForm(request.POST)
+        form = RoomForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('room_list')
@@ -79,7 +79,7 @@ def room_edit(request, pk):
         form = RoomForm(request.POST, request.FILES, instance=room)#instance=room — говорит Django: «Мы редактируем существующую комнату, а не создаём новую».
         if form.is_valid():
             form.save()
-            return redirect('bookings/room_list')
+            return redirect('room_list')
     else:
         form = RoomForm(instance=room)
     return render(request, 'bookings/room_form.html', {'form': form})
@@ -137,7 +137,7 @@ def confirm_booking(request, pk):
     booking = get_object_or_404(Booking, pk=pk)
     booking.status = "Подтверждено"
     booking.save()
-    return redirect("bookings/booking_list")#администратор после подтверждения бронирования всегда возвращается на свежую страницу списка бронирований, что может дать ему больше уверенности в актуальности данных.
+    return redirect("booking_list")#администратор после подтверждения бронирования всегда возвращается на свежую страницу списка бронирований, что может дать ему больше уверенности в актуальности данных.
 
 
 #admin представление для отмены бронирования
@@ -147,5 +147,5 @@ def cancel_booking(request, pk):
     booking = get_object_or_404(Booking, pk=pk)
     booking.status = "Отменено"
     booking.save()
-    return redirect("bookings/booking_list")
+    return redirect("booking_list")
 
