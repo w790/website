@@ -68,7 +68,7 @@ def add_room(request):
 def room_delete(request, pk):
     room = get_object_or_404(Room, pk=pk)
     room.delete()
-    return redirect('bookings/room_list')
+    return redirect('room_list')
 
 #Представление для редактирования номера
 @login_required

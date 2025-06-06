@@ -1,32 +1,68 @@
 {% extends "base.html" %}
-{% block title %}
-Бронирования | SherSnow{% endblock %}
+{% block title %}Бронирования | SherSnow{% endblock %}
 
 {% block content %}
 <div class="container">
     <h2>Все бронирования</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Номер</th>
-                <th>Пользователь</th>
-                <th>Даты</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for booking in booking_list %}
-            <tr>
-                <td>{{ booking.room.name }}</td>
-                <td>{{ booking.user.username }}</td>
-                <td>{{ booking.check_in }} – {{ booking.check_out }}</td>
-                <td>
-                    <a href="#" class="btn btn-sm btn-warning">Редактировать</a>
-                    <a href="#" class="btn btn-sm btn-info">PDF</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+    {% if booking_list %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Номер</th>
+                    <th>Пользователь</th>
+                    <th>Даты</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in booking_list %}
+                <tr>
+                    <td>{{ booking.room.name }}</td>
+                    <td>{{ booking.user.username }}</td>
+                    <td>{{ booking.check_in }} – {{ booking.check_out }}</td>
+                    <td>
+                        {% if booking.status == "Подтверждено" %}
+                            <span class="badge bg-success">{{ booking.get_status_display }}</span>
+                        {% elif booking.status == "Ожидание" %}
+                            <span class="badge bg-warning text-dark">{{ booking.get_status_display }}</span>
+                        {% elif booking.status == "Отменено" %}
+                            <span class="badge bg-danger">{{ booking.get_status_display }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- Для бронирований в статусе "Ожидание" -->
+                        {% if booking.status == "Ожидание" %}
+                            <form action="{% url 'confirm_booking' booking.pk %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success btn-sm">Подтвердить</button>
+                            </form>
+                        {% endif %}
+
+                        <!-- Для всех активных статусов -->
+                        {% if booking.status != "Отменено" %}
+                            <form action="{% url 'cancel_booking' booking.pk %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Отменить</button>
+                            </form>
+                        {% endif %}
+
+                        <a href="#" class="btn btn-sm btn-warning">Редактировать</a>
+                        <a href="#" class="btn btn-sm btn-info">PDF</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <h4>Бронирований пока нет</h4>
+            <p>В системе не найдено ни одного бронирования.</p>
+            <a href="{% url 'room_list' %}" class="btn btn-primary">
+                Посмотреть доступные номера
+            </a>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
