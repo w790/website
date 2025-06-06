@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-{% extends "base.html" %}
-{% block title %}
-Главная | SherSnow{% endblock %}
-
-{% block full_width_header %}
-
-{% load static %}
-<style>
-  header {
-    position: relative;
-    overflow: hidden;
-  }
-  header img {
-    width: 100vw;
-    height: 80vh;
-    object-fit: cover;
-    margin-left: calc(-50vw + 50%);
-    display: block;
-  }
-</style>
-
-<header>
-  <img src="{% static 'header.jpeg' %}" alt="Шапка отеля" />
-</header>
-{% endblock %}
-
-{% block content %}
-<div class="text-center my-5">
-    <h1>Добро пожаловать в SherSnow</h1>
-    <a href="{% url 'room_list' %}" class="btn btn-primary mt-3">Посмотреть отели</a>
-</div>
-{% endblock %}
-=======
 {% extends 'base.html' %}
 {% load static %}
 
@@ -116,4 +82,3 @@
   </div>
 </div>
 {% endblock %}
->>>>>>> e8093fba1e19d50a6303c5e9dc7cd353bdaf0a94

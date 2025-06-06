@@ -28,6 +28,9 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ('room','check_in','check_out')
+        widgets = {
+            'room': forms.Select(attrs={'class': 'form-control'}),
+        }
 
     def clean(self):
         cleaned_data = super().clean()
