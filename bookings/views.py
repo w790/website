@@ -4,16 +4,19 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import user_passes_test,login_required
 from .forms import CustomUserCreationForm, RoomForm, BookingForm
 from .models import Booking,Room
-from datetime import timedelta
+from django.contrib import messages
 
 # Представление для страницы регистрации
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()  # Сохраняет пользователя и хеширует пароль
-            login(request, user)  # Автоматический вход
-            return redirect('home')
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('home')  # Перенаправление на главную страницу
     else:
         form = CustomUserCreationForm()
     return render(request, 'bookings/register.html', {'form': form})
@@ -113,14 +116,18 @@ def booking_success(request):
 def user_cancel_booking(request, pk):
     booking = get_object_or_404(Booking, pk=pk, user=request.user)
     if booking.status == "Ожидание":
-        booking.status = "Отменено"
-        booking.save()
-        return redirect("user_dashboard")
+        booking.delete()
+        messages.success(request, "Бронирование успешно отменено")
+    else:
+        # Добавляем сообщение, если бронирование нельзя отменить
+        messages.error(request, "Невозможно отменить бронирование с текущим статусом")
+
+    return redirect("user_dashboard")
 
 @login_required
 def user_dashboard(request):
-    booking = Booking.objects.filter(user=request.user)  # Получаем бронирования текущего пользователя
-    return render(request, 'bookings/user_dashboard.html', {'booking': booking})
+    bookings = Booking.objects.filter(user=request.user)  # Получаем бронирования текущего пользователя
+    return render(request, 'bookings/user_dashboard.html', {'bookings': bookings})
 
 
 @login_required

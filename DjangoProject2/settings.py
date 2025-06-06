@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'bookings'
 ]
 
-AUTH_PASSWORD_VALIDATORS = []
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,8 +52,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'DjangoProject2.urls'
-
-LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {

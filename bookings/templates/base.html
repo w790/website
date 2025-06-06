@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}SherSnow Hotel{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Статические файлы -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <style>
+      /* Добавленные стили для липкого футера */
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto;
+      }
+
+      footer {
+        flex-shrink: 0;
+      }
+
+      /* Дополнительные стили для выпадающего меню */
+      .account-dropdown .dropdown-toggle::after {
+        display: inline-block;
+        margin-left: 0.5em;
+        vertical-align: middle;
+      }
+      .account-dropdown .dropdown-menu {
+        min-width: 10rem;
+      }
+    </style>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">SherSnow Hotel</a>
+
+        <!-- Кнопка для мобильных устройств -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+
+                <!-- Разделение по ролям -->
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <!-- Меню администратора -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'room_list' %}">Управление номерами</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'booking_list' %}">Управление бронированиями</a>
+                        </li>
+                    {% else %}
+                        <!-- Меню обычного пользователя -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create_booking' %}">Забронировать номер</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_dashboard' %}">Личный кабинет</a>
+                    </li>
+              <!-- Выход через POST-запрос -->
+              <li class="nav-item">
+                <form method="post" action="{% url 'logout' %}" class="d-inline">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-link nav-link">Выйти</button>
+                </form>
+              </li>
+            {% else %}
+              <!-- Комбинированная кнопка аккаунта -->
+              <li class="nav-item dropdown account-dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Мой аккаунт
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'register' %}">Зарегистрироваться</a></li>
+                </ul>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Блок для полноразмерной шапки (например, на главной) -->
+    {% block full_width_header %}{% endblock %}
+
+    <!-- Основной контент -->
+    <main class="container my-4 flex-grow-1">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>SherSnow Hotel</h5>
+                    <p>Лучший отель для вашего отдыха</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Контакты</h5>
+                    <p>г. Шерегеш, ул. Горнолыжная, 123</p>
+                    <p>+7 (999) 649-50-16</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Быстрые ссылки</h5>
+                    <ul class="list-unstyled">
+                        {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                <li><a href="{% url 'room_list' %}" class="text-white">Управление номерами</a></li>
+                                <li><a href="{% url 'booking_list' %}" class="text-white">Управление бронированиями</a></li>
+                            {% else %}
+                                <li><a href="{% url 'create_booking' %}" class="text-white">Бронирование</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'user_dashboard' %}" class="text-white">Личный кабинет</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}" class="text-white">Вход</a></li>
+                            <li><a href="{% url 'register' %}" class="text-white">Регистрация</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>&copy; {% now "Y" %} SherSnow Hotel. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Дополнительные скрипты -->
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

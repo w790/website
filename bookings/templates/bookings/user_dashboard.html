@@ -14,7 +14,7 @@
                     <p class="card-text">
                         Даты: {{ booking.check_in|date:"d.m.Y" }} – {{ booking.check_out|date:"d.m.Y" }}
                     </p>
-                    <form method="post" action="{% url 'delete_booking' booking.id %}">
+                    <form method="post" action="{% url 'user_cancel_booking' booking.id %}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Отменить бронирование?')">
                             Отменить

@@ -6,7 +6,47 @@
     <h2>Бронирование номера</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <!-- Поле выбора комнаты -->
+        <div class="form-group">
+            <label for="{{ form.room.id_for_label }}">Комната:</label>
+            {{ form.room }}
+            {% if form.room.errors %}
+                <div class="text-danger">
+                    {% for error in form.room.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поля дат с календарем -->
+        <div class="form-group">
+            <label for="id_check_in">Дата заселения:</label>
+            <input type="date" class="form-control" name="check_in" id="id_check_in"
+                   value="{{ form.check_in.value|default_if_none:'' }}" required>
+            {% if form.check_in.errors %}
+                <div class="text-danger">
+                    {% for error in form.check_in.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_check_out">Дата выселения:</label>
+            <input type="date" class="form-control" name="check_out" id="id_check_out"
+                   value="{{ form.check_out.value|default_if_none:'' }}" required>
+            {% if form.check_out.errors %}
+                <div class="text-danger">
+                    {% for error in form.check_out.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
         <button type="submit" class="btn btn-success">Подтвердить</button>
         <a href="{% url 'room_list' %}" class="btn btn-secondary">Отмена</a>
     </form>
