@@ -3,10 +3,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Room,Booking
 
+#UserCreationForm - Это встроенная в Django форма для создания новых пользователей.
+#Она содержит три поля: `username`, `password1`, `password2` (подтверждение пароля).
+#Автоматически проверяет:Уникальность имени пользователя, Соответствие двух паролей, Сложность пароля
+
+
 # Форма для регистрации пользователя
 class CustomUserCreationForm(UserCreationForm):
+    #Мы расширяем стандартную форму, добавляя поле `email` (обязательное)
     email = forms.EmailField(required=True)
-
+    #Meta в Django - это просто контейнер для настроек
+    #Когда Django видит класс Meta, он автоматически:Берет указанную модель (User),
+    # Для каждого поля в fields:Смотрит, есть ли такое поле в модели, Создает соответствующее поле формы, Применяет стандартные настройки (валидаторы и т.д.)
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
@@ -15,6 +23,7 @@ class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
         fields = ('number','description','price','photo',)
+
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
@@ -25,6 +34,11 @@ class BookingForm(forms.ModelForm):
         room = cleaned_data.get('room')
         check_in = cleaned_data.get('check_in')
         check_out = cleaned_data.get('check_out')
+
+        # 1. Проверяем, что обе даты присутствуют
+        if check_in is None or check_out is None:
+            # Если какая-то дата отсутствует, пропускаем дальнейшие проверки
+            return cleaned_data
 
         if check_in >= check_out:
             raise forms.ValidationError("Дата выезда должна быть позже даты заезда.")
