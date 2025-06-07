@@ -40,3 +40,14 @@ class Booking(models.Model):
             if (self.check_in < booking.check_out and self.check_out > booking.check_in):
                 return False
         return True
+#Cоздать модель для номеров и связать ее с user по foreignKey
+#Таблицы какие flag
+
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+    booking_id = models.IntegerField(null=True, blank=True)
+    def __str__(self):
+        return f"Уведомления для {self.user.username}"
