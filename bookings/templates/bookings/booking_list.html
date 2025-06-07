@@ -5,7 +5,7 @@
 <div class="container">
     <h2>Все бронирования</h2>
 
-    {% if booking_list %}
+    {% if bookings %}
         <table class="table">
             <thead>
                 <tr>
@@ -17,9 +17,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for booking in booking_list %}
+                {% for booking in bookings %}
                 <tr>
-                    <td>{{ booking.room.name }}</td>
+                    <td>{{ booking.room.number }}</td>
                     <td>{{ booking.user.username }}</td>
                     <td>{{ booking.check_in }} – {{ booking.check_out }}</td>
                     <td>
@@ -47,9 +47,6 @@
                                 <button type="submit" class="btn btn-danger btn-sm">Отменить</button>
                             </form>
                         {% endif %}
-
-                        <a href="#" class="btn btn-sm btn-warning">Редактировать</a>
-                        <a href="#" class="btn btn-sm btn-info">PDF</a>
                     </td>
                 </tr>
                 {% endfor %}

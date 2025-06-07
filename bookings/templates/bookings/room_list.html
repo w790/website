@@ -9,9 +9,9 @@
         {% for room in rooms %}
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}">
+                <img src="{{ room.photo.url }}" class="card-img-top" alt="{{ room.number }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ room.name }}</h5>
+                    <h5 class="card-title">{{ room.number }}</h5>
                     <p class="card-text">{{ room.description }}</p>
                     <p class="text-success">Цена: {{ room.price }}₽/ночь</p>
                     <a href="{% url 'room_edit' room.pk %}" class="btn btn-warning">Редактировать</a>
