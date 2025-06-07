@@ -3,48 +3,196 @@
   <head>
     <meta charset="UTF-8" />
     <title>{% block title %}SherSnow Hotel{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Статические файлы -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <style>
-      /* Добавленные стили для липкого футера */
+      :root {
+        --primary-color: #0a3d62;
+        --secondary-color: #e67e22;
+        --light-color: #f8f9fa;
+        --dark-color: #2c3e50;
+      }
+
       html, body {
         height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
 
       body {
         display: flex;
         flex-direction: column;
+        background-color: #fafafa;
       }
 
+      /* ========== НАВИГАЦИЯ ========== */
+      .navbar {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        padding: 0.8rem 1rem;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+        color: white !important;
+        display: flex;
+        align-items: center;
+      }
+
+      .brand-logo {
+        height: 50px;
+        margin-right: 12px;
+      }
+
+      .nav-link {
+        color: rgba(255,255,255,0.85) !important;
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        margin: 0 3px;
+      }
+
+      .nav-link:hover, .nav-link:focus {
+        color: white !important;
+        background: rgba(255,255,255,0.1);
+      }
+
+      .nav-link.active {
+        color: white !important;
+        background: var(--secondary-color);
+      }
+
+      .dropdown-menu {
+        border: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        padding: 0.5rem;
+      }
+
+      .dropdown-item {
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        transition: all 0.2s;
+      }
+
+      .dropdown-item:hover {
+        background-color: var(--primary-color);
+        color: white !important;
+      }
+
+      /* ========== ОСНОВНОЙ КОНТЕНТ ========== */
       main {
         flex: 1 0 auto;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
       }
 
+      /* ========== ФУТЕР ========== */
       footer {
         flex-shrink: 0;
+        background: var(--dark-color);
+        color: white;
+        padding: 3rem 0 1.5rem;
       }
 
-      /* Дополнительные стили для выпадающего меню */
-      .account-dropdown .dropdown-toggle::after {
-        display: inline-block;
-        margin-left: 0.5em;
-        vertical-align: middle;
+      .footer-title {
+        position: relative;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        font-weight: 600;
       }
-      .account-dropdown .dropdown-menu {
-        min-width: 10rem;
+
+      .footer-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--secondary-color);
+      }
+
+      .footer-logo {
+        height: 45px;
+        margin-bottom: 15px;
+        filter: brightness(0) invert(1); /* Делаем лого белым для темного футера */
+      }
+
+      .contact-info li {
+        display: flex;
+        margin-bottom: 15px;
+        align-items: flex-start;
+      }
+
+      .contact-info i {
+        color: var(--secondary-color);
+        margin-right: 12px;
+        margin-top: 5px;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: rgba(255,255,255,0.7);
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary-color);
+        transform: translateX(5px);
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 20px;
+        margin-top: 40px;
+        text-align: center;
+        color: rgba(255,255,255,0.6);
+      }
+
+      /* ========== ДОПОЛНИТЕЛЬНЫЕ ЭЛЕМЕНТЫ ========== */
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: #082b47;
+        border-color: #082b47;
+      }
+
+      .btn-outline-primary {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-outline-primary:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
       }
     </style>
   </head>
   <body class="d-flex flex-column min-vh-100">
     <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">SherSnow Hotel</a>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'images/logohotel.png' %}" alt="SherSnow Hotel" class="brand-logo">
+          SherSnow Hotel
+        </a>
 
         <!-- Кнопка для мобильных устройств -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -53,48 +201,51 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
+            <!-- Разделение по ролям -->
+            {% if user.is_authenticated %}
+              {% if user.is_staff %}
+                <!-- Меню администратора -->
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'room_list' %}">Управление номерами</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'booking_list' %}">Управление бронированиями</a>
+                </li>
+              {% else %}
+                <!-- Меню обычного пользователя -->
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create_booking' %}">Забронировать номер</a>
+                </li>
+              {% endif %}
+            {% endif %}
+          </ul>
 
-                <!-- Разделение по ролям -->
-                {% if user.is_authenticated %}
-                    {% if user.is_staff %}
-                        <!-- Меню администратора -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'room_list' %}">Управление номерами</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'booking_list' %}">Управление бронированиями</a>
-                        </li>
-                    {% else %}
-                        <!-- Меню обычного пользователя -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'create_booking' %}">Забронировать номер</a>
-                        </li>
-                    {% endif %}
-                {% endif %}
-            </ul>
-
-            <ul class="navbar-nav">
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_dashboard' %}">Личный кабинет</a>
-                    </li>
+          <ul class="navbar-nav ms-auto">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_dashboard' %}">
+                  <i class="fas fa-user-circle me-1"></i> Личный кабинет
+                </a>
+              </li>
               <!-- Выход через POST-запрос -->
               <li class="nav-item">
                 <form method="post" action="{% url 'logout' %}" class="d-inline">
                   {% csrf_token %}
-                  <button type="submit" class="btn btn-link nav-link">Выйти</button>
+                  <button type="submit" class="btn btn-link nav-link">
+                    <i class="fas fa-sign-out-alt me-1"></i> Выйти
+                  </button>
                 </form>
               </li>
             {% else %}
               <!-- Комбинированная кнопка аккаунта -->
               <li class="nav-item dropdown account-dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Мой аккаунт
+                  <i class="fas fa-user me-1"></i> Мой аккаунт
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
+                  <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-sign-in-alt me-2"></i> Войти</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'register' %}">Зарегистрироваться</a></li>
+                  <li><a class="dropdown-item" href="{% url 'register' %}"><i class="fas fa-user-plus me-2"></i> Зарегистрироваться</a></li>
                 </ul>
               </li>
             {% endif %}
@@ -112,40 +263,64 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-auto">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>SherSnow Hotel</h5>
-                    <p>Лучший отель для вашего отдыха</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Контакты</h5>
-                    <p>г. Шерегеш, ул. Горнолыжная, 123</p>
-                    <p>+7 (999) 649-50-16</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Быстрые ссылки</h5>
-                    <ul class="list-unstyled">
-                        {% if user.is_authenticated %}
-                            {% if user.is_staff %}
-                                <li><a href="{% url 'room_list' %}" class="text-white">Управление номерами</a></li>
-                                <li><a href="{% url 'booking_list' %}" class="text-white">Управление бронированиями</a></li>
-                            {% else %}
-                                <li><a href="{% url 'create_booking' %}" class="text-white">Бронирование</a></li>
-                            {% endif %}
-                            <li><a href="{% url 'user_dashboard' %}" class="text-white">Личный кабинет</a></li>
-                        {% else %}
-                            <li><a href="{% url 'login' %}" class="text-white">Вход</a></li>
-                            <li><a href="{% url 'register' %}" class="text-white">Регистрация</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
+    <footer>
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+
+            <h5 class="footer-title">SherSnow Hotel</h5>
+            <p>Премиальный отдых в самом сердце города. Лучший отель для вашего комфортного пребывания.</p>
+            <div class="mt-4">
+              <a href="#" class="btn btn-outline-light btn-sm me-2"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="btn btn-outline-light btn-sm me-2"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="btn btn-outline-light btn-sm me-2"><i class="fab fa-twitter"></i></a>
             </div>
-            <div class="text-center mt-3">
-                <p>&copy; {% now "Y" %} SherSnow Hotel. Все права защищены.</p>
-            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-title">Контакты</h5>
+            <ul class="contact-info list-unstyled">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>г. Шерегеш, ул. Горнолыжная, 123</span>
+              </li>
+              <li>
+                <i class="fas fa-phone"></i>
+                <span>+7 (999) 649-50-16</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>info@shersnowhotel.ru</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-12">
+            <h5 class="footer-title">Быстрые ссылки</h5>
+            <ul class="footer-links list-unstyled">
+              {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                  <li><a href="{% url 'room_list' %}">Управление номерами</a></li>
+                  <li><a href="{% url 'booking_list' %}">Управление бронированиями</a></li>
+                {% else %}
+                  <li><a href="{% url 'create_booking' %}">Бронирование номера</a></li>
+                {% endif %}
+                <li><a href="{% url 'user_dashboard' %}">Личный кабинет</a></li>
+              {% else %}
+                <li><a href="{% url 'login' %}">Вход в систему</a></li>
+                <li><a href="{% url 'register' %}">Регистрация</a></li>
+              {% endif %}
+              <li><a href="#">О нас</a></li>
+              <li><a href="#">Услуги</a></li>
+              <li><a href="#">Конференц-залы</a></li>
+            </ul>
+          </div>
         </div>
+
+        <div class="copyright">
+          <p>&copy; {% now "Y" %} SherSnow Hotel. Все права защищены.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Bootstrap JS -->
