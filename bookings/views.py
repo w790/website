@@ -3,8 +3,9 @@ from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import user_passes_test,login_required
 from .forms import CustomUserCreationForm, RoomForm, BookingForm
-from .models import Booking,Room
+from .models import Booking,Room,Notification
 from django.contrib import messages
+from django.http import JsonResponse
 
 # Представление для страницы регистрации
 def register(request):
@@ -127,7 +128,16 @@ def user_cancel_booking(request, pk):
 @login_required
 def user_dashboard(request):
     bookings = Booking.objects.filter(user=request.user)  # Получаем бронирования текущего пользователя
-    return render(request, 'bookings/user_dashboard.html', {'bookings': bookings})
+    notifications = Notification.objects.filter(
+        user=request.user,
+        is_read=False
+    ).order_by('-created_at')[:5]  # Последние 5 непрочитанных
+
+    return render(request, 'bookings/user_dashboard.html', {
+        'bookings': bookings,
+        'notifications': notifications
+    })
+
 
 
 @login_required
@@ -152,7 +162,23 @@ def confirm_booking(request, pk):
 @user_passes_test(admin_check)
 def cancel_booking(request, pk):
     booking = get_object_or_404(Booking, pk=pk)
-    booking.status = "Отменено"
+    #добавить логику отмены бронирования тут нужно создать уведомление что отменено
+    Notification.objects.create(
+        user=booking.user,
+        message =f"Администратор отменил бронирование комнаты {booking.room.number} c {booking.check_in} по {booking.check_out}",
+        booking_id=booking.id,
+    )
     booking.delete()
+    messages.success(request, "Бронирование отменено, пользователь уведомлен")
     return redirect("booking_list")
 
+# views.py
+@login_required
+def mark_notifications_read(request):
+    if request.method == "POST":
+        Notification.objects.filter(
+            user=request.user,
+            is_read=False
+        ).update(is_read=True)
+        return JsonResponse({"status": "success"})
+    return JsonResponse({"status": "error"})

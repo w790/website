@@ -17,4 +17,5 @@ urlpatterns = [
     path('bookings/confirm/<int:pk>/', views.confirm_booking, name='confirm_booking'),
     path('bookings/cancel/<int:pk>/', views.cancel_booking, name='cancel_booking'),
     path("booking/user_cancel/<int:pk>/", views.user_cancel_booking, name="user_cancel_booking"),
+    path('mark-notifications-read/', views.mark_notifications_read, name='mark_notifications_read'),
 ]

@@ -4,6 +4,40 @@
 
 {% block content %}
 <div class="container">
+    <!-- Блок уведомлений -->
+    {% if notifications %}
+    <div class="alert alert-info mb-4">
+        <h3>Ваши уведомления</h3>
+        <ul class="list-unstyled">
+            {% for notification in notifications %}
+            <li class="mb-2">
+                {{ notification.message }}
+                <small class="text-muted">{{ notification.created_at|date:"d.m.Y H:i" }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+<!--AJAX-запрос (Asynchronous JavaScript and XML) с использованием современного Fetch API
+Фоновый POST-запрос
+Клиент сообщает серверу: "Я увидел уведомления, помечай их как прочитанные"
+Сервер обновляет статус уведомлений в базе данных-->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Пометить уведомления как прочитанные после показа
+        fetch("{% url 'mark_notifications_read' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        });
+    });
+    </script>
+
     <h2>Ваши бронирования</h2>
     <div class="row">
         {% for booking in bookings %}
