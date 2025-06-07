@@ -39,8 +39,8 @@ def logout_view(request):#Выхода пользователя из систе�
     return redirect('login')
 
 def home_view(request):
-    return render(request,'bookings/home.html')
-
+    rooms = Room.objects.all()
+    return render(request,'bookings/home.html',{'rooms': rooms})
 
 def admin_check(user):
     return user.is_staff
@@ -153,6 +153,6 @@ def confirm_booking(request, pk):
 def cancel_booking(request, pk):
     booking = get_object_or_404(Booking, pk=pk)
     booking.status = "Отменено"
-    booking.save()
+    booking.delete()
     return redirect("booking_list")
 

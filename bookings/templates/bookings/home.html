@@ -32,11 +32,10 @@
           {% for room in rooms %}
           <div class="col-md-4 mb-4">
             <div class="card">
-              <img src="{{ room.main_photo.url }}" class="card-img-top" alt="{{ room.name }}">
+              <img src="{{ room.photo.url }}" class="card-img-top" alt="{{ room.number }}">
               <div class="card-body">
-                <h5 class="card-title">{{ room.name }}</h5>
+                <h5 class="card-title">{{ room.number }}</h5>
                 <p class="card-text">{{ room.description|truncatechars:100 }}</p>
-                <a href="{% url 'room_detail' room.id %}" class="btn btn-primary">Подробнее</a>
               </div>
             </div>
           </div>
