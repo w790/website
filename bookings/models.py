@@ -1,5 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True, blank=False, null=False)
+
+    def __str__(self):
+        return self.email
 
 # Модель для номеров
 class Room(models.Model):
@@ -18,7 +25,9 @@ class Booking(models.Model):
         ("Подтверждено", "Подтверждено"),
         ("Отменено", "Отменено"),
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="Пользователь")  # Связь с пользователем
+    #Официальная документация Django настоятельно рекомендует использовать "settings.AUTH_USER_MODEL"
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,verbose_name="Пользователь")  # Связь с пользователем
     room = models.ForeignKey(Room, on_delete=models.CASCADE,verbose_name="Комната")  # Связь с номером
     check_in = models.DateField(verbose_name="Дата заселения")  # Дата заезда
     check_out = models.DateField(verbose_name="Дата выселения")  # Дата выезда
@@ -27,6 +36,7 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.user.username} забронировал комнату {self.room} с {self.check_in} по {self.check_out}"
+
     def is_available(self):
         # Проверяет, доступен ли номер для выбранных дат.
         existing_bookings = Booking.objects.filter(room=self.room)#objects-менеджер модели, предоставляющий интерфейс для работы с базой данных
@@ -40,11 +50,12 @@ class Booking(models.Model):
             if (self.check_in < booking.check_out and self.check_out > booking.check_in):
                 return False
         return True
+
 #Cоздать модель для номеров и связать ее с user по foreignKey
 #Таблицы какие flag
 
 class Notification(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
