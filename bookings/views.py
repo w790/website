@@ -1,43 +1,9 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from django.contrib.auth import login, authenticate,logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import user_passes_test,login_required
-from .forms import CustomUserCreationForm, RoomForm, BookingForm
+from .forms import RoomForm, BookingForm
 from .models import Booking,Room,Notification
 from django.contrib import messages
 from django.http import JsonResponse
-
-# Представление для страницы регистрации
-def register(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('home')  # Перенаправление на главную страницу
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'bookings/register.html', {'form': form})
-
-
-# Представление для страницы входа
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('home')  # Перенаправление на главную страницу
-    else:
-        form = AuthenticationForm()
-    return render(request, 'bookings/login.html', {'form': form})
-
-def logout_view(request):#Выхода пользователя из системы
-    logout(request)
-    return redirect('login')
 
 def home_view(request):
     rooms = Room.objects.all()
