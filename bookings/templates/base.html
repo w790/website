@@ -229,7 +229,7 @@
               </li>
               <!-- Выход через POST-запрос -->
               <li class="nav-item">
-                <form method="post" action="{% url 'logout' %}" class="d-inline">
+                <form method="post" action="{% url 'account_logout' %}" class="d-inline">
                   {% csrf_token %}
                   <button type="submit" class="btn btn-link nav-link">
                     <i class="fas fa-sign-out-alt me-1"></i> Выйти
@@ -243,9 +243,9 @@
                   <i class="fas fa-user me-1"></i> Мой аккаунт
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-sign-in-alt me-2"></i> Войти</a></li>
+                  <li><a class="dropdown-item" href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt me-2"></i> Войти</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'register' %}"><i class="fas fa-user-plus me-2"></i> Зарегистрироваться</a></li>
+                  <li><a class="dropdown-item" href="{% url 'account_signup' %}"><i class="fas fa-user-plus me-2"></i> Зарегистрироваться</a></li>
                 </ul>
               </li>
             {% endif %}
@@ -307,8 +307,8 @@
                 {% endif %}
                 <li><a href="{% url 'user_dashboard' %}">Личный кабинет</a></li>
               {% else %}
-                <li><a href="{% url 'login' %}">Вход в систему</a></li>
-                <li><a href="{% url 'register' %}">Регистрация</a></li>
+                <li><a href="{% url 'account_login' %}">Вход в систему</a></li>
+                <li><a href="{% url 'account_signup' %}">Регистрация</a></li>
               {% endif %}
               <li><a href="#">О нас</a></li>
               <li><a href="#">Услуги</a></li>

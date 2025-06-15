@@ -5,20 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="update: Полный редизайн интерфейса&#10;&#10;-Замена желтой навигации на премиальный градиент&#10;-Добавлена поддержка кастомного логотипа&#10;-Интеграция Font Awesome иконок&#10;-Улучшенный адаптивный футер&#10;-Новая цветовая схема и анимации&#10;-Добавлены временные элементы для логотипа">
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/email_confirm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/email_confirmation_sent.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/logout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/password_change.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/password_reset.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/password_reset_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/password_reset_from_key.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/password_reset_from_key_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookings/templates/account/signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookings/forms_legacy_auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookings/views_legacy_auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoProject2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoProject2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DjangoProject2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoProject2/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/templates/account/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/account/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/templates/account/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/account/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/legacy_auth/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/legacy_auth/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -90,6 +89,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Паха\PycharmProjects\DjangoProject2\bookings\templates\legacy_auth" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="DjangoProject2" type="Python.DjangoServer" factoryName="Django server">
       <module name="DjangoProject2" />
@@ -207,7 +211,7 @@
       <workItem from="1749914318599" duration="74000" />
       <workItem from="1749914514611" duration="8073000" />
       <workItem from="1749963826025" duration="307000" />
-      <workItem from="1749964270742" duration="18319000" />
+      <workItem from="1749964270742" duration="23703000" />
     </task>
     <task id="LOCAL-00001" summary="start project">
       <option name="closed" value="true" />
