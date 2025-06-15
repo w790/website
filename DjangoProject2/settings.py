@@ -124,3 +124,5 @@ MEDIA_ROOT = BASE_DIR / 'media'  # Правильный стиль для Path
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'bookings.CustomUser'

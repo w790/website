@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+from bookings.models import CustomUser
 from django.contrib.auth.forms import UserCreationForm
 from .models import Room,Booking
 
@@ -16,8 +16,14 @@ class CustomUserCreationForm(UserCreationForm):
     #Когда Django видит класс Meta, он автоматически:Берет указанную модель (User),
     # Для каждого поля в fields:Смотрит, есть ли такое поле в модели, Создает соответствующее поле формы, Применяет стандартные настройки (валидаторы и т.д.)
     class Meta:
-        model = User
+        model = CustomUser
         fields = ('username', 'email', 'password1', 'password2')
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("A user with that email already exists.")
+        return email
 
 class RoomForm(forms.ModelForm):
     class Meta:
