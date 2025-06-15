@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b3006b3-5894-475c-bac0-cd1ded08cbf9" name="Changes" comment="update: Полный редизайн интерфейса&#10;&#10;-Замена желтой навигации на премиальный градиент&#10;-Добавлена поддержка кастомного логотипа&#10;-Интеграция Font Awesome иконок&#10;-Улучшенный адаптивный футер&#10;-Новая цветовая схема и анимации&#10;-Добавлены временные элементы для логотипа">
-      <change beforePath="$PROJECT_DIR$/DjangoProject2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoProject2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/migrations/0002_booking_status_alter_booking_check_in_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/migrations/0003_alter_room_photo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/migrations/0004_notification.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +194,7 @@
       <workItem from="1749914318599" duration="74000" />
       <workItem from="1749914514611" duration="8073000" />
       <workItem from="1749963826025" duration="307000" />
-      <workItem from="1749964270742" duration="12883000" />
+      <workItem from="1749964270742" duration="13508000" />
     </task>
     <task id="LOCAL-00001" summary="start project">
       <option name="closed" value="true" />
