@@ -1,10 +1,233 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}
+    {% if form.instance.pk %}Редактирование номера {{ form.instance.number }}{% else %}Добавление номера{% endif %} | SherSnow
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">
+                {% if form.instance.pk %}
+                    <i class="bi bi-pencil-square"></i> Редактирование номера {{ form.instance.number }}
+                {% else %}
+                    <i class="bi bi-plus-circle"></i> Добавление нового номера
+                {% endif %}
+            </h2>
+        </div>
+
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <!-- Общие ошибки формы -->
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    <!-- Левая колонка - Основная информация -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_number" class="form-label">Номер комнаты *</label>
+                            {{ form.number }}
+                            <div class="invalid-feedback">
+                                {{ form.number.errors.0 }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Описание *</label>
+                            {{ form.description }}
+                            <div class="invalid-feedback">
+                                {{ form.description.errors.0 }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_price" class="form-label">Цена за ночь (₽) *</label>
+                            <div class="input-group">
+                                {{ form.price }}
+                                <span class="input-group-text">₽</span>
+                            </div>
+                            <div class="invalid-feedback">
+                                {{ form.price.errors.0 }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Правая колонка - Фотография -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Фотография номера</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Текущее фото -->
+                                {% if form.instance.photo %}
+                                    <div class="text-center mb-4">
+                                        <h6>Текущее фото</h6>
+                                        <img src="{{ form.instance.photo.url }}"
+                                             alt="Фото номера {{ form.instance.number }}"
+                                             class="img-fluid rounded shadow"
+                                             style="max-height: 200px;">
+                                    </div>
+
+                                    <!-- Опции для текущего фото -->
+                                    <div class="border-top pt-3">
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   name="photo-clear"
+                                                   id="photo-clear"
+                                                   role="switch">
+                                            <label class="form-check-label text-danger" for="photo-clear">
+                                                Удалить текущее фото
+                                            </label>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <!-- Загрузка нового фото -->
+                                <div class="mb-3">
+                                    <label for="id_photo" class="form-label">
+                                        {% if form.instance.photo %}Загрузить новое фото{% else %}Выберите фото{% endif %}
+                                    </label>
+
+                                    <div class="file-upload-area border rounded p-3 text-center bg-light">
+                                        <div class="file-upload-icon mb-2">
+                                            <i class="bi bi-cloud-arrow-up fs-1 text-primary"></i>
+                                        </div>
+                                        <div class="mb-2">
+                                            {{ form.photo }}
+                                        </div>
+                                        <p class="small text-muted mb-0">
+                                            Перетащите сюда файл или нажмите для выбора
+                                        </p>
+                                        <p class="small text-muted">
+                                            Поддерживаемые форматы: JPG, PNG, GIF. Макс. размер: 5MB
+                                        </p>
+                                    </div>
+
+                                    <div class="invalid-feedback">
+                                        {{ form.photo.errors.0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопки -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'room_list' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Отмена
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Сохранить
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .file-upload-area {
+        transition: all 0.3s ease;
+        border: 2px dashed #ced4da;
+        cursor: pointer;
+    }
+
+    .file-upload-area:hover {
+        background-color: #f8f9fa !important;
+        border-color: #0d6efd;
+    }
+
+    .file-upload-area input[type="file"] {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+    .file-upload-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+</style>
+
+<script>
+// Добавляем Bootstrap валидацию
+(() => {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
+
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+    })
+})();
+
+// Показываем имя выбранного файла
+document.querySelectorAll('input[type="file"]').forEach(input => {
+    input.addEventListener('change', function() {
+        const fileName = this.files[0]?.name || 'Файл не выбран';
+        const container = this.closest('.file-upload-area');
+        const infoText = container.querySelector('.text-muted');
+
+        if (this.files.length) {
+            infoText.textContent = `Выбран файл: ${fileName}`;
+            container.style.borderColor = '#198754'; // Зеленый цвет
+            container.style.backgroundColor = '#eafaf1';
+        } else {
+            infoText.textContent = 'Перетащите сюда файл или нажмите для выбора';
+            container.style.borderColor = '#ced4da';
+            container.style.backgroundColor = '#f8f9fa';
+        }
+    });
+});
+
+// Обработка drag and drop
+document.querySelectorAll('.file-upload-area').forEach(area => {
+    area.addEventListener('dragover', e => {
+        e.preventDefault();
+        area.style.borderColor = '#0d6efd';
+        area.style.backgroundColor = '#e7f1ff';
+    });
+
+    area.addEventListener('dragleave', () => {
+        area.style.borderColor = '#ced4da';
+        area.style.backgroundColor = '#f8f9fa';
+    });
+
+    area.addEventListener('drop', e => {
+        e.preventDefault();
+        area.style.borderColor = '#ced4da';
+        area.style.backgroundColor = '#f8f9fa';
+
+        const input = area.querySelector('input[type="file"]');
+        if (input && e.dataTransfer.files.length) {
+            input.files = e.dataTransfer.files;
+            const event = new Event('change', { bubbles: true });
+            input.dispatchEvent(event);
+        }
+    });
+});
+</script>
+{% endblock %}
