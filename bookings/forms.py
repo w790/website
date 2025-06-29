@@ -1,7 +1,15 @@
-from django import forms
-from bookings.models import CustomUser
-from django.contrib.auth.forms import UserCreationForm
 from .models import Room,Booking
+from allauth.account.forms import SignupForm
+from django import forms
+from .models import CustomUser
+
+class CustomSignupForm(SignupForm):
+    def clean_email(self):
+        email = self.cleaned_data.get('email').lower()
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("Этот email уже зарегистрирован")
+        return email
+
 
 class RoomForm(forms.ModelForm):
     class Meta:
