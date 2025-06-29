@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'
@@ -66,8 +68,13 @@ ACCOUNT_SIGNUP_REDIRECT_URL = '/'         # куда перекидывать п
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
-# Настройка почты
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # оставить
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pashaw790gi@gmail.com'  # Тот же email, для которого создан пароль
+EMAIL_HOST_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")  # Пароль приложения
+DEFAULT_FROM_EMAIL = 'Имя сервиса <pashaw790gi@gmail.com>'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
