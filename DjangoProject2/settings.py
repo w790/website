@@ -38,20 +38,26 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
-    'bookings',
     
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'bookings',
 ]
 
 SITE_ID = 1
 
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
-ACCOUNT_EMAIL_REQUIRED = True           # Делает email обязательным
+ACCOUNT_FORMS = {
+    'signup': 'bookings.forms.CustomSignupForm',
+}
+
+ACCOUNT_LOGIN_METHODS = ['email']
+ACCOUNT_SIGNUP_FIELDS = ['email*']   # Делает email обязательным
 ACCOUNT_UNIQUE_EMAIL = True             # Требует уникальный email
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # требует подтверждение email
@@ -61,7 +67,7 @@ LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 # Настройка почты
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Для отладки, потом заменим
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # оставить
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

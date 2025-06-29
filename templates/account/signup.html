@@ -1,0 +1,76 @@
+{% extends "base.html" %}  <!-- Используйте свой базовый шаблон -->
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="mb-4">{% trans "Sign Up" %}</h1>
+            
+            <!-- Кастомное сообщение об ошибке для email -->
+            {% if form.errors.email %}
+                <div class="alert alert-danger">
+                    {{ form.errors.email }}
+                    <div class="mt-2">
+                        <a href="{% url 'account_login' %}" class="btn btn-outline-primary btn-sm">
+                            {% trans "Sign In" %}
+                        </a>
+                        <a href="{% url 'account_reset_password' %}" class="btn btn-outline-secondary btn-sm">
+                            {% trans "Forgot Password?" %}
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+            <p class="mb-3">
+                {% blocktrans trimmed %}
+                Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+                {% endblocktrans %}
+            </p>
+
+            <form method="post" action="{% url 'account_signup' %}" class="mb-4">
+                {% csrf_token %}
+                
+                <!-- Поле email с выделением при ошибке -->
+                <div class="mb-3 {% if form.errors.email %}has-error{% endif %}">
+                    <label for="id_email" class="form-label">{% trans "Email" %}</label>
+                    <input type="email" name="email" id="id_email" 
+                           class="form-control {% if form.errors.email %}is-invalid{% endif %}" 
+                           value="{{ form.email.value|default:'' }}" 
+                           required>
+                </div>
+                
+                <!-- Поле пароля 1 -->
+                <div class="mb-3">
+                    <label for="id_password1" class="form-label">{% trans "Password" %}</label>
+                    <input type="password" name="password1" id="id_password1" 
+                           class="form-control" required>
+                </div>
+                
+                <!-- Поле пароля 2 -->
+                <div class="mb-3">
+                    <label for="id_password2" class="form-label">{% trans "Password (again)" %}</label>
+                    <input type="password" name="password2" id="id_password2" 
+                           class="form-control" required>
+                </div>
+                
+                <!-- Скрытое поле для редиректа -->
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                {% endif %}
+                
+                <button type="submit" class="btn btn-primary w-100">
+                    {% trans "Sign Up" %}
+                </button>
+            </form>
+            
+            {% if SOCIALACCOUNT_ENABLED %}
+                <div class="border-top pt-3">
+                    <h5 class="mb-3">{% trans "Or sign up with" %}</h5>
+                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
