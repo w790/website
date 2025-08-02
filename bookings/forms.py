@@ -1,12 +1,13 @@
 from django import forms
 from bookings.models import CustomUser
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from .models import Room,Booking
+from django.contrib.auth import get_user_model
 
 #UserCreationForm - Это встроенная в Django форма для создания новых пользователей.
 #Она содержит три поля: `username`, `password1`, `password2` (подтверждение пароля).
 #Автоматически проверяет:Уникальность имени пользователя, Соответствие двух паролей, Сложность пароля
-
+User = get_user_model()
 
 # Форма для регистрации пользователя
 class CustomUserCreationForm(UserCreationForm):
@@ -16,14 +17,19 @@ class CustomUserCreationForm(UserCreationForm):
     #Когда Django видит класс Meta, он автоматически:Берет указанную модель (User),
     # Для каждого поля в fields:Смотрит, есть ли такое поле в модели, Создает соответствующее поле формы, Применяет стандартные настройки (валидаторы и т.д.)
     class Meta:
-        model = CustomUser
+        model = User
         fields = ('username', 'email', 'password1', 'password2')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        if CustomUser.objects.filter(email=email).exists():
+        if User.objects.filter(email=email).exists():
             raise forms.ValidationError("A user with that email already exists.")
         return email
+
+class CustomAuthenticationForm(AuthenticationForm):
+    class Meta:
+        model = User  # Используем get_user_model()
+        fields = ('username', 'password')
 
 class RoomForm(forms.ModelForm):
     class Meta:
