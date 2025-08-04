@@ -22,13 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_slg_j!3142%44fz=%ks#j_h4jg%7b-dhuy2q2)67xap((rzl#'
-
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+
+CSRF_COOKIE_SECURE = False  # Для разработки (HTTP)
+SESSION_COOKIE_SECURE = False  # Для разработки
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000'
+]
 
 # Application definition
 
@@ -64,17 +70,23 @@ ACCOUNT_UNIQUE_EMAIL = True             # Требует уникальный em
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # требует подтверждение email
 
+ACCOUNT_LOGIN_BY_CODE_ENABLED = False
+ACCOUNT_TWO_FACTOR_ENABLED = False
+
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'         # куда перекидывать после успешной регистрации
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'  # Главная страница
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'pashaw790gi@gmail.com'  # Тот же email, для которого создан пароль
+EMAIL_HOST_USER = 'django.website.test@gmail.com'  # Тот же email, для которого создан пароль
 EMAIL_HOST_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")  # Пароль приложения
-DEFAULT_FROM_EMAIL = 'Имя сервиса <pashaw790gi@gmail.com>'
+DEFAULT_FROM_EMAIL = 'Имя сервиса <django.website.test@gmail.com>'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -114,8 +126,12 @@ WSGI_APPLICATION = 'DjangoProject2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'mydatabase'),
+        'USER': os.getenv('DB_USER', 'myuser'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'secretpassword'),
+        'HOST': os.getenv('DB_HOST', 'db'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
